@@ -1,5 +1,6 @@
 <?php
 namespace Routing;
+use \Responder;
 
 /**
  * Handles routing for HTTP requests

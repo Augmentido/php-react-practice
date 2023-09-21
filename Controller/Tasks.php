@@ -2,7 +2,8 @@
 namespace Controller\Tasks;
 
 require_once ROOT . '/Model/Task.php';
-use \Model\Task as Task;
+use \Model\Task\Task;
+use \Responder;
 
 class Tasks{
     /**

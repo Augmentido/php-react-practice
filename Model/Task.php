@@ -15,12 +15,12 @@ class Task{
      * @return void
      */
     private function loadData(){
-        if(!file_exists(ROOT . $this->$dataFileName)){
+        if(!file_exists(ROOT . $this->dataFileName)){
             $this->tasksList = [];
             $this->lastId = 0;
             return;
         }
-        include ROOT . $this->$dataFileName;
+        include ROOT . $this->dataFileName;
         $this->tasksList = $tasksData;
         $this->lastId = $tasksLastId;
     }
@@ -31,9 +31,9 @@ class Task{
      */
     private function saveData(){
         file_put_contents(
-            ROOT . $this->$dataFileName,  
-            '<'."?php\nnamespace Model\\Task;\n\$tasksData = " . var_export($tasksList, 1)
-            ."\n\$tasksLastId = " . $this->lastId .";\n"
+            ROOT . $this->dataFileName,  
+            '<'."?php\nnamespace Model\\Task;\n\$tasksData = " . var_export($this->tasksList, 1)
+            .";\n\$tasksLastId = " . $this->lastId .";\n"
         );
     }
 
