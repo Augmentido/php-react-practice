@@ -12,7 +12,10 @@ class Tasks{
     public function list(){
         $t = new Task();
         $tasks = $t->getList();
-        return Responder::respond('list', $tasks);
+        return Responder::respond([
+            'operation_type' => 'tasks_list',
+            'list' => $tasks,
+        ]);
     }
 
     /**
@@ -37,8 +40,8 @@ class Tasks{
         if($id === false){
             return Responder::e500('Can`t add your task! Try again later.');
         }
-        return Responder::respond('operation_result', [
-            'operation_type' => 'add',
+        return Responder::respond([
+            'operation_type' => 'tasks_add',
             'id' => $id,
         ]);
     }
@@ -59,8 +62,9 @@ class Tasks{
         if(is_null($taskSign)){
             return Responder::e400('Item with your ID does not exist!');
         }
-        return Responder::respond('task', [
-            'data' => $taskSign,
+        return Responder::respond([
+            'operation_type' => 'tasks_get',
+            'task' => $taskSign,
         ]);
     }
 
@@ -94,8 +98,8 @@ class Tasks{
         if(!$res){
             return Responder::e500('Can`t update your task! Try again later.');
         }
-        return Responder::respond('operation_result', [
-            'operation_type' => 'update',
+        return Responder::respond([
+            'operation_type' => 'tasks_update',
             'id' => $params['id'],
         ]);
     }
@@ -120,9 +124,8 @@ class Tasks{
         if(!$res){
             return Responder::e500('Can`t remove your task! Try again later.');
         }
-        return Responder::respond('operation_result', [
-            'operation_type' => 'delete',
-            'status' => 'success',
+        return Responder::respond([
+            'operation_type' => 'tasks_delete',
             'id' => $params['id']
         ]);
     }

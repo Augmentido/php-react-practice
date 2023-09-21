@@ -2,7 +2,7 @@
 namespace Routing;
 
 /**
- * Hadles routing for HTTP requests
+ * Handles routing for HTTP requests
  * @param string $method
  * @param string $path
  * @param array $routes
@@ -25,6 +25,8 @@ function route($method, $path, $routes){
             return route_run($path, $route[1], $route[2], $route[3]);
         }
     }
+
+    Responder::e404();
     return false;
 }
 
@@ -82,7 +84,8 @@ function route_run($path_actual, $route_string, $route_controller, $route_method
     // 2. initialize controller
     $fn = ROOT.'/Controller/'.$route_controller.'.php';
     if(!file_exists($fn)){
-        return false; // add call to error 500 controller here
+        Responder::e500('Can`t find controller "'.$route_controller.'".');
+        return true;
     }
     require_once $fn;
 
