@@ -105,6 +105,21 @@ class Tasks{
     }
 
     /**
+     * Delete all tasks
+     * @return [status:string]
+     */
+    public function truncate($params){
+        $t = new Task();
+        $res = $t->truncate();
+        if(!$res){
+            return Responder::e500('Can`t truncate! Try again later.');
+        }
+        return Responder::respond([
+            'operation_type' => 'tasks_truncate',
+        ]);
+    }
+
+    /**
      * Delete task by ID
      * @param array $params = [id:int]
      * 

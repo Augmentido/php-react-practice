@@ -73,6 +73,17 @@ class Task{
     }
 
     /**
+     * Removes all tasks
+     * @return bool
+     */
+    public function truncate(){
+        $this->tasksList = [];
+        $this->lastId = 0;
+        $this->saveData();
+        return true;
+    }
+
+    /**
      * Removes a task from the tasks list
      * @param int $id
      * 

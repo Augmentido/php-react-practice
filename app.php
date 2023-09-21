@@ -22,6 +22,7 @@ Routing\route(
         ['GET',    'tasks',     'Tasks', 'list'],
         ['POST',   'tasks',     'Tasks', 'add'],
         ['GET',    'tasks/:id', 'Tasks', 'get'],
+        ['DELETE', 'tasks/all', 'Tasks', 'truncate'],
         ['DELETE', 'tasks/:id', 'Tasks', 'delete'],
         ['PATCH',  'tasks/:id', 'Tasks', 'update'],
     ]
