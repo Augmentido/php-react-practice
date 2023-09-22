@@ -145,4 +145,15 @@ class Tasks{
             'id' => $params['id']
         ]);
     }
+
+    /**
+     * Just respond to "preflight" browser request
+     * @return [status:string, id:int]
+     */
+    public function httpOptions(){
+        header('Access-Control-Allow-Methods: GET,POST,DELETE,PATCH,OPTIONS');
+        header('Access-Control-Allow-Headers: Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+        return Responder::respond([
+        ]);
+    }
 }

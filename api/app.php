@@ -17,7 +17,8 @@ if( strpos($_SERVER['HTTP_ACCEPT'], 'application/json') === false
 
 Routing\route( 
     $_SERVER['REQUEST_METHOD'], 
-    $_SERVER['PATH_INFO'], [
+    $uri[0], // This variable is defined in index.php as $uri = explode('?',$_SERVER['REQUEST_URI'],2);
+    [
         // method,  path,       controller, method to call
         ['GET',    'tasks',     'Tasks', 'list'],
         ['POST',   'tasks',     'Tasks', 'add'],
@@ -25,5 +26,7 @@ Routing\route(
         ['DELETE', 'tasks/all', 'Tasks', 'truncate'],
         ['DELETE', 'tasks/:id', 'Tasks', 'delete'],
         ['PATCH',  'tasks/:id', 'Tasks', 'update'],
+        ['OPTIONS','tasks',     'Tasks', 'httpOptions'],
+        ['OPTIONS','tasks/:id', 'Tasks', 'httpOptions'],
     ]
 );
